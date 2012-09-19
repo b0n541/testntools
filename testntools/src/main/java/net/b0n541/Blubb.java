@@ -9,4 +9,9 @@ public class Blubb
     {
         System.out.println("Blubb");
     }
+
+    public final static int getTheAnswer()
+    {
+        return 42;
+    }
 }
