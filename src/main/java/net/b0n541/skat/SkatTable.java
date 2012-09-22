@@ -7,7 +7,7 @@ public class SkatTable {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			Thread thread = new Thread(new SkatSeries(i));
 			thread.start();
 		}
