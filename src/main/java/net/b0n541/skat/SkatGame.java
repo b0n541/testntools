@@ -3,19 +3,18 @@ package net.b0n541.skat;
 import java.math.BigDecimal;
 import java.util.Random;
 
-
 public class SkatGame {
 
-	private int gameNo;
-	private int tableNo;
-	
-	private Random rand = new Random();
+	private final int gameNo;
+	private final int tableNo;
+
+	private final Random rand = new Random();
 
 	public SkatGame(int tableNo, int gameNo) {
 		this.tableNo = tableNo;
 		this.gameNo = gameNo;
 	}
-	
+
 	public void run() throws InterruptedException {
 		dealCards();
 		playTricks();
@@ -23,7 +22,8 @@ public class SkatGame {
 	}
 
 	private void calcResult() {
-		System.out.println("Table " + tableNo + " Game " + gameNo + ": Calculating result.");
+		// System.out.println("Table " + tableNo + " Game " + gameNo
+		// + ": Calculating result.");
 		doRandomTask();
 	}
 
@@ -33,16 +33,33 @@ public class SkatGame {
 		for (int i = 0; i < max; i++) {
 			result = result.add(new BigDecimal(i));
 		}
-		System.out.println(result);
 	}
 
 	private void playTricks() {
-		System.out.println("Table " + tableNo + " Game " + gameNo + ": Playing tricks.");
+		// System.out.println("Table " + tableNo + " Game " + gameNo
+		// + ": Playing tricks.");
+		for (int i = 0; i < 10; i++) {
+			playTrickForeHandCard();
+			playTrickMiddleHandCard();
+			playTrickRearHandCard();
+		}
+	}
+
+	private void playTrickForeHandCard() {
+		doRandomTask();
+	}
+
+	private void playTrickMiddleHandCard() {
+		doRandomTask();
+	}
+
+	private void playTrickRearHandCard() {
 		doRandomTask();
 	}
 
 	private void dealCards() {
-		System.out.println("Table " + tableNo + " Game " + gameNo + ": Dealing cards.");
+		// System.out.println("Table " + tableNo + " Game " + gameNo
+		// + ": Dealing cards.");
 		doRandomTask();
 	}
 }
