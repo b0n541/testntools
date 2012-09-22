@@ -1,17 +1,14 @@
 package net.b0n541;
 
-public class Blubb2
-{
-    /**
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        System.out.println("Blubb");
-    }
+public class Blubb2 {
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("Blubb2");
+	}
 
-    public final static int getTheAnswer()
-    {
-        return 42;
-    }
+	public final static int getTheAnswer() {
+		return 42;
+	}
 }
