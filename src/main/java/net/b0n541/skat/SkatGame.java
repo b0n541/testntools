@@ -26,8 +26,11 @@ public class SkatGame {
 
 	public void run() throws InterruptedException {
 		dealCards();
+		Thread.sleep(1);
 		playTricks();
+		Thread.sleep(1);
 		calcResult();
+		Thread.sleep(1);
 	}
 
 	private void calcResult() {
