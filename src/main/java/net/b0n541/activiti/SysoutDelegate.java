@@ -5,9 +5,11 @@ import org.activiti.engine.delegate.JavaDelegate;
 
 public class SysoutDelegate implements JavaDelegate {
 
-	public void execute(DelegateExecution execution) throws Exception {
+	public synchronized void execute(DelegateExecution execution)
+			throws Exception {
 
-		System.out.println(execution.getCurrentActivityName());
+		System.out.println(execution.getCurrentActivityName() + " on thread "
+				+ Thread.currentThread().getName());
 	}
 
 }
