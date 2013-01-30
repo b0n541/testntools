@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="skatGame" name="Skat game" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <serviceTask id="dealCards" name="Deal cards" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="dealCards"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="no" name="No" sourceRef="lookedIntoSkat" targetRef="exclusivegateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!LOOKED_INTO_SKAT}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="bidForDeclarer" name="Bid for declarer" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="flow3" sourceRef="dealCards" targetRef="bidForDeclarer"></sequenceFlow>
+    <serviceTask id="lookIntoSkat" name="Look into skat" activiti:async="true" activiti:class="net.b0n541.activiti.LookIntoSkatAction"></serviceTask>
+    <sequenceFlow id="flow4" sourceRef="bidForDeclarer" targetRef="lookIntoSkat"></sequenceFlow>
+    <exclusiveGateway id="lookedIntoSkat" name="Looked into skat"></exclusiveGateway>
+    <sequenceFlow id="flow5" sourceRef="lookIntoSkat" targetRef="lookedIntoSkat"></sequenceFlow>
+    <serviceTask id="discardSkat" name="Discard skat" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="yes" name="Yes" sourceRef="lookedIntoSkat" targetRef="discardSkat">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${LOOKED_INTO_SKAT}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow6" sourceRef="discardSkat" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="announceGame" name="Announce game" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="announceGame"></sequenceFlow>
+    <serviceTask id="playTricks" name="Play tricks" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="flow8" sourceRef="announceGame" targetRef="playTricks"></sequenceFlow>
+    <serviceTask id="calculateResult" name="Calculate result" activiti:async="true" activiti:class="net.b0n541.activiti.NullAction"></serviceTask>
+    <sequenceFlow id="flow9" sourceRef="playTricks" targetRef="calculateResult"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="calculateResult" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_skatGame">
+    <bpmndi:BPMNPlane bpmnElement="skatGame" id="BPMNPlane_skatGame">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1380.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="dealCards" id="BPMNShape_dealCards">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="bidForDeclarer" id="BPMNShape_bidForDeclarer">
+        <omgdc:Bounds height="55.0" width="105.0" x="260.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="discardSkat" id="BPMNShape_discardSkat">
+        <omgdc:Bounds height="55.0" width="105.0" x="647.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lookIntoSkat" id="BPMNShape_lookIntoSkat">
+        <omgdc:Bounds height="55.0" width="105.0" x="420.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lookedIntoSkat" id="BPMNShape_lookedIntoSkat">
+        <omgdc:Bounds height="40.0" width="40.0" x="562.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="807.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="announceGame" id="BPMNShape_announceGame">
+        <omgdc:Bounds height="55.0" width="105.0" x="892.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="playTricks" id="BPMNShape_playTricks">
+        <omgdc:Bounds height="55.0" width="105.0" x="1052.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="calculateResult" id="BPMNShape_calculateResult">
+        <omgdc:Bounds height="55.0" width="105.0" x="1210.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="55.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="205.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="260.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="no" id="BPMNEdge_no">
+        <omgdi:waypoint x="582.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="249.0"></omgdi:waypoint>
+        <omgdi:waypoint x="824.0" y="248.0"></omgdi:waypoint>
+        <omgdi:waypoint x="827.0" y="197.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="100.0" x="-14.0" y="11.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="365.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="525.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="562.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="847.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="892.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="yes" id="BPMNEdge_yes">
+        <omgdi:waypoint x="602.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="647.0" y="177.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="13.0" width="100.0" x="-17.0" y="8.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="752.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="807.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="997.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1052.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="1157.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1210.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="1315.0" y="177.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1380.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
