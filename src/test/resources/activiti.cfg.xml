@@ -8,7 +8,9 @@
 		class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
 		
 		<!-- <property name="jdbcMaxActiveConnections" value="10" />  -->
-		<property name="jdbcMaxActiveConnections" value="20" />
+		<property name="jdbcMaxActiveConnections" value="30" />
+		
+		<property name="history" value="audit" />
 		
 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="jobExecutorActivate" value="true" />

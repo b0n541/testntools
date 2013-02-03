@@ -15,7 +15,7 @@ public class SkatGameProcessTest extends PluggableActivitiTestCase {
 		Map<String, Object> processVariables = new HashMap<String, Object>();
 		processVariables.put(SkatProcessVariable.GAME_NUMBER.name(), 1);
 		runtimeService.startProcessInstanceByKey("skatGame", processVariables);
-		waitForJobExecutorToProcessAllJobs(1000, 100);
+		waitForJobExecutorToProcessAllJobs(10000, 100);
 	}
 
 	@Test
