@@ -6,12 +6,18 @@
 
 	<bean id="processEngineConfiguration"
 		class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
-		
-		<!-- <property name="jdbcMaxActiveConnections" value="10" />  -->
+
+		<!-- <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration"> 
+			Database configurations <property name="databaseType" value="postgres" /> 
+			<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/jandb" /> 
+			<property name="jdbcDriver" value="org.postgresql.Driver" /> <property name="jdbcUsername" 
+			value="jan" /> <property name="jdbcPassword" value="jan" /> -->
+		<!-- <property name="jdbcMaxActiveConnections" value="10" /> -->
 		<property name="jdbcMaxActiveConnections" value="30" />
-		
+
+		<!-- <property name="history" value="none" /> -->
 		<property name="history" value="audit" />
-		
+
 		<property name="databaseSchemaUpdate" value="true" />
 		<property name="jobExecutorActivate" value="true" />
 	</bean>
